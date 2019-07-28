@@ -18,3 +18,5 @@ Some features are:
 8. Category based product showing option.
 
 9. Related product is suggested. 
+
+10. Used Gmail smtp for send mail.  
