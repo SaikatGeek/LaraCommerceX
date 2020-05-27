@@ -35,29 +35,34 @@
                     <ul class="navbar-nav mr-auto">
                             
 
-                            @auth
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('home') }}"> Dashboard</a>
-                                </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('home') }}"> Dashboard</a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/add/product/view') }}"> Add Product</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/add/product/view') }}"> Add Product</a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/add/category/view') }}"> Add Category</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/add/category/view') }}"> Add Category</a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('contact/message/view') }}"> View Contact Messages</a>
-                                </li>
-                            @else
-                                logout
-                            @endauth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('contact/message/view') }}"> View Contact Messages</a>
+                            </li> 
 
-                            @guest
-                                guest login
-                            @endguest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('coupon/add') }}"> Coupon Add</a>
+                            </li>
+
+                        @else
+                            logout
+                        @endauth
+
+                        @guest
+                            guest login
+                        @endguest
 
                             
 
@@ -106,5 +111,7 @@
             
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 </html>

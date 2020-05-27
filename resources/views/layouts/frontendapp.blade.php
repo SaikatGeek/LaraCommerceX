@@ -179,5 +179,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('frontend_assets/js/sly.min.js') }}"></script>
     <script src="{{ asset('frontend_assets/js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('frontend_assets/js/main.js') }}"></script>
+    @yield('footer_scripts')
     </body>
 </html>

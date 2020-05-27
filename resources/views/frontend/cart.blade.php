@@ -1,7 +1,7 @@
 @extends('layouts.frontendapp')
-{{-- <?php
+<?php
  error_reporting(0);  // Most Important Tactics to hide the errors
-?> --}}
+?>
 @section('frontend_content')
 
 
@@ -34,6 +34,9 @@
 						</tr>
 					</thead>
 					<tbody>
+						@php
+							$Subtotal = 0;
+						@endphp
 						@forelse($cart_items as $cart_item )
 							<tr>
 								<td class="product-col">
@@ -59,6 +62,9 @@
 									</div>
 								</td>
 								<td class="total-col">${{ (App\Product::find($cart_item->product_id)->product_price)*$cart_item->product_quantity }}</td>
+								@php
+									$Subtotal = $Subtotal + ((App\Product::find($cart_item->product_id)->product_price)*$cart_item->product_quantity);
+								@endphp
 							</tr>
 
 						@empty
@@ -103,8 +109,8 @@
 							<h4>Cupon code</h4>
 							<p>Enter your cupone code</p>
 							<div class="cupon-input">
-								<input type="text">
-								<button class="site-btn">Apply</button>
+								<input type="text" id="coupon_name" value="{{ $coupon_name }}">
+								<button class="site-btn" id="apply_coupon_btn">Apply</button>
 							</div>
 						</div>
 					</div>
@@ -113,7 +119,8 @@
 							<h4>Cart total</h4>
 							<p>Final Info</p>
 							<ul class="cart-total-card">
-								<li>Subtotal<span>$59.90</span></li>
+								<li>Subtotal<span>${{$Subtotal}}</span></li>
+								<li>Discount Amount<span>{{ $cart_discount_amount }}</span></li>
 								<li>Shipping<span>Free</span></li>
 								<li class="total">Total<span>$59.90</span></li>
 							</ul>
@@ -128,4 +135,15 @@
 
 
 
+@endsection
+
+@section('footer_scripts')
+	<script>
+	    $(document).ready(function(){
+	       $('#apply_coupon_btn').click(function(){
+	       	   var coupon_name = $('#coupon_name').val();
+	       	   window.location.href = "{{ url('/cart/') }}" + "/" + coupon_name;
+	       });
+	    });
+	</script>
 @endsection

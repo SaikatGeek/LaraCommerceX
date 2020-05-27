@@ -36,6 +36,7 @@ Route::post('add/category/insert', 'CategoryController@addcategoryinsert');
 Route::get('contact/message/view', 'HomeController@contactmessageview');
 Route::get('change/menu/status/{category_id}', 'HomeController@changemenustatus');
 Route::get('read/contact/message/{contact_id}', 'HomeController@readcontactmessage');
+Route::any('coupon/add', 'CouponController@index');
 
 //Front end routes
 Route::get('/', 'FrontendController@index');
@@ -45,5 +46,6 @@ Route::get('/product/details/{product_id}', 'FrontendController@productdetails')
 Route::get('/category/wise/product/{category_id}', 'FrontendController@categorywiseproduct'); 
 Route::get('/add/to/cart/{product_id}', 'FrontendController@addtocart'); 
 Route::get('/cart', 'FrontendController@cart'); 
+Route::get('/cart/{coupon_name}', 'FrontendController@cart'); 
 Route::get('/delete/from/cart/{cart_id}', 'FrontendController@deletefromcart'); 
 Route::get('clear/cart', 'FrontendController@clearcart'); 

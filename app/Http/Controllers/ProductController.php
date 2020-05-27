@@ -8,9 +8,12 @@ use App\Category;
 use Image;
 
 class ProductController extends Controller
-{
+{   
 
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     function addproductview(){
     	
