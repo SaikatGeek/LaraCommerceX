@@ -95,7 +95,7 @@
 							<div class="shipping-chooes">
 								<div class="sc-item">
 									<input type="radio" name="sc" id="one">
-									<label for="one">Next day delivery<span>$4.99</span></label>
+									<label for="one" id="next">Next day delivery<span>$4.99</span></label>
 								</div>
 								<div class="sc-item">
 									<input type="radio" name="sc" id="two">
@@ -106,8 +106,8 @@
 									<label for="three">Personal Pickup<span>Free</span></label>
 								</div>
 							</div>
-							<h4>Cupon code</h4>
-							<p>Enter your cupone code</p>
+							<h4>Coupon code</h4>
+							<p>Enter your coupon code</p>
 							<div class="cupon-input">
 								<input type="text" id="coupon_name" value="{{ $coupon_name }}">
 								<button class="site-btn" id="apply_coupon_btn">Apply</button>
@@ -119,10 +119,10 @@
 							<h4>Cart total</h4>
 							<p>Final Info</p>
 							<ul class="cart-total-card">
-								<li>Subtotal<span>${{$Subtotal}}</span></li>
-								<li>Discount Amount<span>{{ $cart_discount_amount }}</span></li>
-								<li>Shipping<span>Free</span></li>
-								<li class="total">Total<span>$59.90</span></li>
+								<li>Subtotal<span>${{ $Subtotal }}</span></li>
+								<li>Discount Amount<span>{{ $cart_discount_amount }}%</span></li>
+								<li>Shipping<span id="shipping_amount">Free</span></li>
+								<li class="total">Ground Total<span id="Total">{{ $Subtotal - $Subtotal*($cart_discount_amount/100) }}</span></li>
 							</ul>
 							<a class="site-btn btn-full" href="checkout.html">Proceed to checkout</a>
 						</div>
@@ -142,8 +142,19 @@
 	    $(document).ready(function(){
 	       $('#apply_coupon_btn').click(function(){
 	       	   var coupon_name = $('#coupon_name').val();
-	       	   window.location.href = "{{ url('/cart/') }}" + "/" + coupon_name;
+	       	   window.location.href = "{{ url('/cart') }}" + "/" + coupon_name;
 	       });
+
+		   $('#next').click(function(){			   
+			   var charge = parseFloat(4.99);
+			   $("#shipping_amount").html(charge);
+			   var Total = parseFloat($("#Total").html());
+			   var grand_total = parseFloat( Total + charge).toFixed(2);
+			   $("#Total").html(grand_total);
+			   return 0;
+
+		   });
+
 	    });
 	</script>
 @endsection
